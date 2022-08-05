@@ -57,19 +57,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 70,
               ),
               InkWell(
-                child: BlocListener<SignupCubit, SignupState> (
+                child: BlocListener<SignupCubit, SignupState>(
                   listener: (context, state) async {
-                    if(state is SignupLoading){
+                    if (state is SignupLoading) {
                       showDialog(
                           context: context,
                           barrierDismissible: false,
                           builder: (context) => const Center(
-                            child: CircularProgressIndicator(),
-                          ));
-                    }
-                    else if(state is SignupSuccessful){
+                                child: CircularProgressIndicator(),
+                              ));
+                    } else if (state is SignupSuccessful) {
                       Navigator.pop(context);
-                      await UserPreferences.setUserData(FirebaseAuth.instance.currentUser!.uid);
+                      await UserPreferences.setUserData(
+                          FirebaseAuth.instance.currentUser!.uid);
                       // ignore: use_build_context_synchronously
                       Navigator.push(
                           context,
@@ -77,8 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               builder: (context) => const HomePage()));
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Signup Successful")));
-                    }
-                    else if(state is SignupUnsuccessful){
+                    } else if (state is SignupUnsuccessful) {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text("Signup Unsuccessful")));
@@ -87,7 +86,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: CustomButton(txt: "Sign Up"),
                 ),
                 onTap: () {
-                  context.read<SignupCubit>().getSignUpData(emailController.text, passwordController.text);
+                  context.read<SignupCubit>().getSignUpData(
+                      emailController.text, passwordController.text);
                 },
               ),
               const SizedBox(
@@ -106,18 +106,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                 ),
               ),
-              SizedBox(height: 20,),
-              SizedBox(height: 20,width: 50,
-              child: Center(child: Text("Or Sign Up With Other Methods",style: TextStyle(color: Colors.teal,fontWeight: FontWeight.bold),)),),
-              SizedBox(height: 15,),
-              Row(children: [
-                Expanded(child: CustomButton(txt: "Google")),
-                SizedBox(width: 10,),
-                Expanded(child: InkWell(child: CustomButton(txt: "Phone Number"),
-                  onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> const VerificationScreen()));},
-                )
-                ),
-              ],)
+              const SizedBox(
+                height: 20,
+              ),
+              const SizedBox(
+                height: 20,
+                width: 50,
+                child: Center(
+                    child: Text(
+                  "Or Sign Up With Other Methods",
+                  style: TextStyle(
+                      color: Colors.teal, fontWeight: FontWeight.bold),
+                )),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                children: [
+                  Expanded(child: CustomButton(txt: "Google")),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      child: InkWell(
+                    child: CustomButton(txt: "Phone Number"),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const VerificationScreen()));
+                    },
+                  )),
+                ],
+              )
             ],
           ),
         ),

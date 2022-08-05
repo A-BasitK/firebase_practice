@@ -54,20 +54,20 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 70,
               ),
-
               InkWell(
-                  child:BlocListener<LoginCubit, LoginState>(
-                    listener: (context, state) async{
+                  child: BlocListener<LoginCubit, LoginState>(
+                    listener: (context, state) async {
                       if (state is LoginLoading) {
                         showDialog(
                             context: context,
                             barrierDismissible: false,
                             builder: (context) => const Center(
-                              child: CircularProgressIndicator(),
-                            ));
+                                  child: CircularProgressIndicator(),
+                                ));
                       } else if (state is LoginSuccessful) {
                         Navigator.pop(context);
-                        await UserPreferences.setUserData(FirebaseAuth.instance.currentUser!.uid);
+                        await UserPreferences.setUserData(
+                            FirebaseAuth.instance.currentUser!.uid);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -77,18 +77,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else if (state is LoginUnSuccessful) {
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Login UnSuccessful")));
-                      }
-                      else{
+                            const SnackBar(
+                                content: Text("Login UnSuccessful")));
+                      } else {
                         print("Another Error");
                       }
                     },
                     child: CustomButton(txt: "Sign In"),
                   ),
                   onTap: () {
-                   context.read<LoginCubit>().getLoginData(emailController.text, passwordController.text);
-                  }
-              ),
+                    context.read<LoginCubit>().getLoginData(
+                        emailController.text, passwordController.text);
+                  }),
               const SizedBox(
                 height: 20,
               ),

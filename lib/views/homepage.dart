@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Text("Homepage"),
+        title: const Text("Homepage"),
         actions: [
           InkWell(
               child: const Padding(
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           },
           builder: (context, state) {
             if (state is InvoiceReadLoading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount: state.data.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
                       decoration: BoxDecoration(
                           color: Colors.teal.shade100,
                           borderRadius: BorderRadius.circular(20),
@@ -197,7 +197,7 @@ class _HomePageState extends State<HomePage> {
                                                                       controller:
                                                                           updateNameController,
                                                                       decoration:
-                                                                          (InputDecoration()),
+                                                                          (const InputDecoration()),
                                                                     )),
                                                                     Expanded(
                                                                         child:
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                                                                       controller:
                                                                           updatePriceController,
                                                                       decoration:
-                                                                          (InputDecoration()),
+                                                                          (const InputDecoration()),
                                                                     )),
                                                                     Expanded(
                                                                         child:
@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                                                                       controller:
                                                                           updateItemController,
                                                                       decoration:
-                                                                          (InputDecoration()),
+                                                                          (const InputDecoration()),
                                                                     )),
                                                                     Expanded(
                                                                         child: BlocListener<
@@ -249,7 +249,7 @@ class _HomePageState extends State<HomePage> {
                                                                                 invoiceData: data,
                                                                                 id: state.data[index].id));
                                                                           },
-                                                                          child: Text("Update Data")),
+                                                                          child: const Text("Update Data")),
                                                                     ))
                                                                   ]))));
                                             },
@@ -383,7 +383,7 @@ class _HomePageState extends State<HomePage> {
                                                     inputPriceController.text,
                                                   );
                                             },
-                                            child: Text("Add")),
+                                            child: const Text("Add")),
                                       ))))
                         ],
                       ),
